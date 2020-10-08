@@ -1,0 +1,28 @@
+GNS
+    GCS TEXT NOT NULL,
+    combinedPT TEXT NOT NULL,
+    combinedPC TEXT NOT NULL,
+    PT TEXT NOT NULL,
+    PC TEXT NOT NULL,
+	FFD TEXT NOT NULL,
+    PRIMARY KEY (PT)
+
+X-rev
+    -- DPN VARCHAR(5) NOT NULL, input file includes non DPN & non parts
+    DPN TEXT NOT NULL,
+    Descrip TEXT,
+    PC TEXT,
+    PT TEXT,
+    Phase TEXT NOT NULL,
+    UNIQUE (DPN),
+    FOREIGN KEY (PT) REFERENCES GNS (PT)
+
+A-rev
+    -- DPN VARCHAR(5) NOT NULL, input file includes non DPN & non parts
+    DPN TEXT NOT NULL,
+    Descrip TEXT NOT NULL,
+    PC TEXT NOT NULL,
+    PT TEXT NOT NULL,
+    Phase TEXT NOT NULL,
+    UNIQUE (DPN),
+    FOREIGN KEY (PT) REFERENCES GNS (PT)
