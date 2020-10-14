@@ -53,34 +53,12 @@ ManUPCNull = df_mansour[df_mansour['upc'].isnull()]
 
 StoneUPCNull = df_stone[df_stone['UPC_Dell'].isnull()]
 
-aNotNull = df_a.notnull().sum()
-aIsNull = df_a.isnull().sum()
-
 print(
-    f"{HarmonyUPCNull}\n\n"
-    f"{ManUPCNull}\n\n"
-    f"{StoneUPCNull}"
+    f"H:\n{HarmonyUPCNull}\n\n"
+    f"M:\n{ManUPCNull}\n\n"
+    f"S:\n{StoneUPCNull}"
 )
 
 #%%
-# if null, load into new dataframe and save to csv
-xGCS_null = df_x[df_x['GCS'].isnull()]
-xGCS_null
+# capture less than 6 digits into DF
 
-xCPC_null = df_x[df_x['COMBINED_PC'].isnull()]
-xCPC_null
-
-xCPT_null = df_x[df_x['COMBINED_PT'].isnull()]
-xCPT_null
-
-#%%
-aGCS_null = df_a[df_a['GCS'].isnull()]
-aGCS_null
-
-aCPC_null = df_a[df_a['COMBINED_PC'].isnull()]
-aCPC_null
-
-aCPT_null = df_a[df_a['COMBINED_PT'].isnull()]
-aCPT_null
-
-print(aCPC_null,aCPT_null)
