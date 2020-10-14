@@ -1,4 +1,5 @@
 #%%
+# compare 3 Harmony DB
 #%%
 import os
 import csv
@@ -9,10 +10,12 @@ from sqlalchemy import create_engine
 from config import db_password
 # %%
 # load data files
-a? = "data\parts_arev_na.txt"
-b? = "data\parts_xrev_na.txt"
-
+fileMan = "data\mansourUPC.csv"
+fileStone = "data\\UPCCodes1.csv"
+fileHarmony = "data\\UPCcomplete.csv"
 #%%
 # load 3 sets rev into dataframe
-df = pd.read_csv(arev_load, sep=',')
-df_x = pd.read_csv(xrev_load, sep=",")
+df_mansour = pd.read_csv(fileMan, sep=',')
+df_stone = pd.read_csv(fileStone, sep=",")
+df_harmony = pd.read_csv(fileHarmony, sep=",")
+# %%
