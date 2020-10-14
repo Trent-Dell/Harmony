@@ -46,7 +46,7 @@ print(
 #%%
 # zero in on UPC
 
-# if null, load into new dataframe and save to csv
+# if null, load into new dataframe 
 HarmonyUPCNull = df_harmony[df_harmony['upc'].isnull()]
 
 ManUPCNull = df_mansour[df_mansour['upc'].isnull()]
@@ -58,7 +58,19 @@ print(
     f"M:\n{ManUPCNull}\n\n"
     f"S:\n{StoneUPCNull}"
 )
+#%%
+# load DF with UPC only
+df_UPCNullH = HarmonyUPCNull[['dw_sku_num','upc']]
+df_UPCNullM = ManUPCNull[['dw_sku_num','upc']]
+df_UPCNullS = StoneUPCNull[['dw_sku_num','UPC_Dell']]
 
+print(
+    f'Harmony UPC null array size: {df_UPCNullH.shape}\n\n'
+    f'Mansour UPC null array size: {df_UPCNullM.shape}\n\n'
+    f'Stone UPC null array size: {df_UPCNullS.shape}\n\n'
+)
 #%%
 # capture less than 6 digits into DF
 
+df_UPCNullS
+# %%
