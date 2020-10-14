@@ -20,6 +20,9 @@ df_mansour = pd.read_excel(fileMan, sep=',')
 df_stone = pd.read_excel(fileStone, sep=",")
 df_harmony = pd.read_csv(fileHarmony, sep=",")
 # %%
+df_harmony
+# df_mansour
+# %%
 print(
     f'Main DB data types: {df_harmony.dtypes}\n\n'
     f'Mansour data types: {df_mansour.dtypes}\n\n'
@@ -48,6 +51,10 @@ print(
 
 # if null, load into new dataframe 
 HarmonyUPCNull = df_harmony[df_harmony['upc'].isnull()]
+# add rows where value is too short
+HarmonyUPCNull = HarmonyUPCNull.append(~(df_harmony['upc'].str.len() < 6))
+
+# df[~(df.A.str.len() > 10)]
 
 ManUPCNull = df_mansour[df_mansour['upc'].isnull()]
 
@@ -68,6 +75,32 @@ print(
     f'Harmony UPC null array size: {df_UPCNullH.shape}\n\n'
     f'Mansour UPC null array size: {df_UPCNullM.shape}\n\n'
     f'Stone UPC null array size: {df_UPCNullS.shape}\n\n'
+)
+# %%
+def dataframe_difference(df1, df2, which=None):
+    """Find rows which are different between two DataFrames."""
+    comparison_df = df1.merge(df2,
+                              indicator=True,
+                              how='outer')
+    if which is None:
+        diff_df = comparison_df[comparison_df['_merge'] != 'both']
+    else:
+        diff_df = comparison_df[comparison_df['_merge'] == which]
+    diff_df.to_csv('data/diff.csv')
+    return diff_df
+
+# %%
+dataframe_difference(df_UPCNullH, df_UPCNullM)
+
+# set which = both to see which ones are duplicated
+# dataframe_difference(df_UPCNullH, df_UPCNullM, which='both')
+# %%
+# check for duplicates
+diff_df = pd.read_csv('data\diff.csv')
+duplicate = diff_df[diff_df.duplicated()]
+print(
+    f"Duplicate rows:\n{duplicate}\n\n"
+    f"original dataframe:\n{diff_df}"
 )
 #%%
 # capture less than 6 digits into DF
