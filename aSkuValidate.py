@@ -10,8 +10,8 @@ from sqlalchemy import create_engine
 from config import db_password
 # %%
 # load data files
-fileMan = "data\mansourUPC.csv"
-fileStone = "data\\UPCCodes1.csv"
+fileMan = "data\mansourUPC.xlsx"
+fileStone = "data\\UPCCodes1.xlsx"
 fileHarmony = "data\\UPCcomplete.csv"
 #%%
 # load 3 sets rev into dataframe
