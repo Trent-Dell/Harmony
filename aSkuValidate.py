@@ -48,13 +48,21 @@ print(
     )
 #%%
 # zero in on UPC
+HarmonyUPCNull = df_harmony[df_harmony['upc'].isnull()]
 
 # if null, load into new dataframe 
-HarmonyUPCNull = df_harmony[df_harmony['upc'].isnull()]
+# HarmonyUPCNull = df_harmony[df_harmony['upc'].isnull() or df_harmony['upc'].apply(lambda x: len(x)<6)]
 # add rows where value is too short
-HarmonyUPCNull = HarmonyUPCNull.append(~(df_harmony['upc'].str.len() < 6))
+# HarmonyUPCNull['upc'] = HarmonyUPCNull.append((df_harmony['upc'].str.len() < 6))
+# HarmonyUPCNull['upc'] = HarmonyUPCNull[df_harmony['upc'].str.len() < 6)]
+# df['column_name'] = df[df['column_name'].str.len()<6]
+# df[~(df.A.str.len() < 6)]
 
-# df[~(df.A.str.len() > 10)]
+# df[
+# df['names'].apply(lambda x: len(x)>1) &
+# df['cars'].apply(lambda x: "i" in x) &
+# df['age'].apply(lambda x: int(x)<2)
+#   ]
 
 ManUPCNull = df_mansour[df_mansour['upc'].isnull()]
 
@@ -65,6 +73,12 @@ print(
     f"M:\n{ManUPCNull}\n\n"
     f"S:\n{StoneUPCNull}"
 )
+#%%
+h2 = df_harmony[df_harmony['upc'].str.len() < 111]
+
+h2
+# %%
+df_harmony.dtypes
 #%%
 # load DF with UPC only
 df_UPCNullH = HarmonyUPCNull[['dw_sku_num','upc']]
